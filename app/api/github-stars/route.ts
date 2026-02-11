@@ -4,13 +4,13 @@ import { siteConfig } from "@/config/site";
 
 const REVALIDATE_SECONDS = 60 * 60 * 6; // 6 hours
 
-function getTemplateRepoSlug(): string {
+function getGitHubRepoSlug(): string {
   try {
-    const url = new URL(siteConfig.links.templateRepo);
+    const url = new URL(siteConfig.links.github);
     return url.pathname.replace(/^\/+/, "");
   } catch {
-    // Fallback (should never happen unless config is invalid)
-    return "namanbarkiya/minimal-next-portfolio";
+    // Fallback to your GitHub username
+    return "red001001";
   }
 }
 
@@ -32,12 +32,12 @@ async function getGitHubRepoStars(repo: string): Promise<number | null> {
 }
 
 export async function GET() {
-  const repo = getTemplateRepoSlug();
+  const repo = getGitHubRepoSlug();
   const stars = await getGitHubRepoStars(repo);
 
   return NextResponse.json({
     repo,
-    url: siteConfig.links.templateRepo,
+    url: siteConfig.links.github,
     stars,
   });
 }
