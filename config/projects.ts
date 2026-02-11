@@ -49,3 +49,5 @@ export const Projects: ProjectInterface[] = [
   //   pagesInfoArr: []
   // }
 ];
+
+export const featuredProjects = Projects.slice(0, 3);
